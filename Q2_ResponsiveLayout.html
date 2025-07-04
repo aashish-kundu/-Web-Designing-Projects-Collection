@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        * { box-sizing: border-box; }
+        .header, .footer {
+            background: #333;
+            color: white;
+            padding: 15px;
+        }
+        .column {
+            float: left;
+            padding: 15px;
+        }
+        .menu { width: 25%; }
+        .content { width: 75%; }
+        .row::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+        @media screen and (max-width: 600px) {
+            .menu, .content { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Responsive Website</h1>
+    </div>
+    <div class="row">
+        <div class="column menu">
+            <ul>
+                <li>Home</li>
+                <li>About</li>
+            </ul>
+        </div>
+        <div class="column content">
+            <h2>Main Content</h2>
+            <p>Resizes based on screen width.</p>
+        </div>
+    </div>
+    <div class="footer">
+        <p>Footer Content</p>
+    </div>
+</body>
+</html>

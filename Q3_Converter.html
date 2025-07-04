@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Converter</title>
+  <style>
+    .converter {
+      width: 300px;
+      margin: 50px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .section {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="converter">
+    <div class="section">
+      <h3>Temperature Converter</h3>
+      <input type="number" id="celsius" placeholder="Celsius">
+      <button onclick="convertTemp()">Convert</button>
+      <p>Fahrenheit: <span id="fahrenheit"></span></p>
+    </div>
+    <div class="section">
+      <h3>Currency Converter (USD to EUR)</h3>
+      <input type="number" id="usd" placeholder="USD">
+      <button onclick="convertCurrency()">Convert</button>
+      <p>EUR: <span id="eur"></span></p>
+    </div>
+  </div>
+
+  <script>
+    function convertTemp() {
+      const celsius = parseFloat(document.getElementById('celsius').value);
+      const fahrenheit = celsius * 9/5 + 32;
+      document.getElementById('fahrenheit').textContent = isNaN(fahrenheit) ? '' : fahrenheit.toFixed(2) + ' °F';
+    }
+
+    function convertCurrency() {
+      const usd = parseFloat(document.getElementById('usd').value);
+      const exchangeRate = 0.85; // Approximate USD to EUR rate (as of July 2025)
+      const eur = usd * exchangeRate;
+      document.getElementById('eur').textContent = isNaN(eur) ? '' : eur.toFixed(2) + ' €';
+    }
+  </script>
+</body>
+</html>

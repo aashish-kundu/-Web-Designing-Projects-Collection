@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animal Photos Gallery</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background: linear-gradient(135deg, #1a2a6c, #b21f1f, #1a2a6c);
+        color: #fff;
+        min-height: 100vh;
+        padding: 20px;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      /* ANIMAL PHOTOS HEADER SECTION */
+      .header-section {
+        text-align: center;
+        padding: 60px 20px;
+        position: relative;
+        margin: 30px 0;
+        overflow: hidden;
+        border-radius: 20px;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        background: url("https://images.unsplash.com/photo-1504208434309-cb69f4fe52b0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80")
+          center/cover;
+      }
+
+      .header-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: 1;
+      }
+
+      .animal-title {
+        font-size: 5.5rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        margin: 0;
+        position: relative;
+        z-index: 2;
+        /* Text effect with transparent fill */
+        color: transparent;
+        background-clip: text;
+        -webkit-background-clip: text;
+        background-image: url("https://images.unsplash.com/photo-1517423568366-8b83523034fd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=900&q=80");
+        background-size: 200% auto;
+        background-position: center;
+        /* Stroke effect */
+        -webkit-text-stroke: 3px #fff;
+        text-stroke: 3px #fff;
+        letter-spacing: 4px;
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
+        animation: background-shift 8s infinite alternate;
+      }
+
+      @keyframes background-shift {
+        0% {
+          background-position: 0% 50%;
+        }
+        100% {
+          background-position: 100% 50%;
+        }
+      }
+
+      .subtitle {
+        font-size: 1.5rem;
+        margin-top: 20px;
+        position: relative;
+        z-index: 2;
+        font-weight: 300;
+        letter-spacing: 3px;
+        color: #fff;
+        max-width: 600px;
+        margin: 25px auto 0;
+        line-height: 1.6;
+      }
+
+      /* GALLERY SECTION */
+      .gallery-section {
+        padding: 50px 0;
+      }
+
+      .section-title {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 40px;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        position: relative;
+        display: inline-block;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 4px;
+        background: linear-gradient(90deg, #ff8a00, #e52e71);
+        border-radius: 2px;
+      }
+
+      .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px;
+        margin-top: 40px;
+      }
+
+      .gallery-item {
+        position: relative;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+        height: 300px;
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+        background: #222;
+      }
+
+      .gallery-item:hover {
+        transform: translateY(-15px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+      }
+
+      .gallery-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .gallery-item:hover .gallery-img {
+        transform: scale(1.1);
+      }
+
+      .gallery-caption {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+        padding: 20px;
+        transform: translateY(100%);
+        transition: transform 0.4s ease;
+      }
+
+      .gallery-item:hover .gallery-caption {
+        transform: translateY(0);
+      }
+
+      .gallery-title {
+        font-size: 1.4rem;
+        margin-bottom: 8px;
+        font-weight: 600;
+      }
+
+      .gallery-desc {
+        font-size: 0.95rem;
+        opacity: 0.8;
+        line-height: 1.5;
+      }
+
+      /* FOOTER */
+      footer {
+        text-align: center;
+        padding: 30px;
+        margin-top: 50px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        font-size: 1.1rem;
+      }
+
+      .social-icons {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 20px;
+      }
+
+      .social-icons a {
+        color: #fff;
+        font-size: 1.8rem;
+        transition: transform 0.3s ease;
+      }
+
+      .social-icons a:hover {
+        transform: translateY(-5px);
+      }
+
+      /* RESPONSIVE DESIGN */
+      @media (max-width: 900px) {
+        .animal-title {
+          font-size: 4rem;
+        }
+
+        .gins-text {
+          font-size: 5rem;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .animal-title {
+          font-size: 3rem;
+          -webkit-text-stroke: 2px #fff;
+        }
+
+        .gins-text {
+          font-size: 3.5rem;
+        }
+
+        .gallery {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- ANIMAL PHOTOS HEADER -->
+      <section class="header-section">
+        <h1 class="animal-title">ANIMAL PHOTOS</h1>
+        <p class="subtitle">
+          Discover the beauty of wildlife through our stunning collection of
+          animal photography from around the globe
+        </p>
+      </section>
+
+      <!-- GALLERY SECTION -->
+      <section class="gallery-section">
+        <h2 class="section-title">Wildlife Gallery</h2>
+        <div class="gallery">
+          <div class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1504173010664-32509aeebb62?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=900&q=80"
+              alt="Lion"
+              class="gallery-img"
+            />
+            <div class="gallery-caption">
+              <h3 class="gallery-title">Majestic Lion</h3>
+              <p class="gallery-desc">
+                The king of the savannah in its natural habitat
+              </p>
+            </div>
+          </div>
+
+          <div class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=900&q=80"
+              alt="Elephant"
+              class="gallery-img"
+            />
+            <div class="gallery-caption">
+              <h3 class="gallery-title">Gentle Giant</h3>
+              <p class="gallery-desc">African elephant in the golden sunset</p>
+            </div>
+          </div>
+
+          <div class="gallery-item">
+            <img src="animal3.jpg" alt="Tiger" class="gallery-img" />
+            <div class="gallery-caption">
+              <h3 class="gallery-title">Bengal Tiger</h3>
+              <p class="gallery-desc">
+                Rare glimpse of this magnificent predator
+              </p>
+            </div>
+          </div>
+
+          <div class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1546182990-dffeafbe841d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=900&q=80"
+              alt="Panda"
+              class="gallery-img"
+            />
+            <div class="gallery-caption">
+              <h3 class="gallery-title">Playful Panda</h3>
+              <p class="gallery-desc">
+                Endangered species enjoying bamboo feast
+              </p>
+            </div>
+          </div>
+
+          <div class="gallery-item">
+            <img src="animal2.jpg" alt="Wolf" class="gallery-img" />
+            <div class="gallery-caption">
+              <h3 class="gallery-title"></h3>
+              <p class="gallery-desc">
+                Surviving in the harsh frozen wilderness
+              </p>
+            </div>
+          </div>
+
+          <div class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1546182990-dffeafbe841d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=900&q=80"
+              alt="Eagle"
+              class="gallery-img"
+            />
+            <div class="gallery-caption">
+              <h3 class="gallery-title">Golden Eagle</h3>
+              <p class="gallery-desc">
+                Master of the skies in mountain regions
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <footer>
+        <p>
+          Animal Photography Collection &copy; 2025 | Wildlife Conservation
+          Project
+        </p>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-pinterest"></i></a>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
